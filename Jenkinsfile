@@ -38,6 +38,7 @@ pipeline {
 
     stage('FunctionalTesting') {
       steps {
+        sleep 10
         withEnv(overrides: ["JAVA_HOME=${ tool 'JDK 8' }", "PATH+MAVEN=${tool 'Maven'}/bin:${env.JAVA_HOME}/bin"]) {
           bat 'mvn -f cucumber-API-Framework/pom.xml test'
         }
