@@ -35,7 +35,8 @@ pipeline {
         echo 'container running'
       }
     }
-      stage('FunctionalTesting') {
+
+    stage('FunctionalTesting') {
       steps {
         withEnv(overrides: ["JAVA_HOME=${ tool 'JDK 8' }", "PATH+MAVEN=${tool 'Maven'}/bin:${env.JAVA_HOME}/bin"]) {
           bat 'mvn -f cucumber-API-Framework/pom.xml test'
@@ -62,7 +63,7 @@ pipeline {
 
     stage('Email') {
       steps {
-        emailext(subject: 'Testing Reports for $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', body: 'please go to url: $BUILD_URL.'+readFile("cucumber-API-Framework/src/main/resources/emailTemplate.html"), attachmentsPattern: 'cucumber-API-Framework/target/cucumber-reports/report.html', from: "${readProps['email.from']}", mimeType: 'text/html', to: "${readProps['email.to']}", attachLog: true)
+        emailext(subject: 'Testing Reports for $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', body: 'please go to url: $BUILD_URL.'+readFile('cucumber-API-Framework/src/main/resources/emailTemplate.html'), attachmentsPattern: 'cucumber-API-Framework/target/cucumber-reports/report.html', from: "${readProps['email.from']}", mimeType: 'text/html', to: "${readProps['email.to']}", attachLog: true)
       }
     }
 
