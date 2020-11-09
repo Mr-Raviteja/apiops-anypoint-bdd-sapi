@@ -15,9 +15,11 @@ And I send the POST request to the service
 Then I get the 201 response code
 Then I expect the values of src/test/resources/cucumberResources/registerCustomerOutput.json in the response body
 
-//Scenario: Test the scheduler part
-//Given I create a new request with http://localhost:8081/ service
-//And I add the synchronize endpoint to the service
-//And I send the GET request to the service
-//Then I get the 200 response code
+Scenario: Test the scheduler part
+Given I create a new request with http://localhost:8081/api/ service
+And I add the synchronize endpoint to the service
+And I send the GET request to the service
+Then I get the 200 response code
+
+
 
