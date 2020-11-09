@@ -51,17 +51,6 @@ pipeline {
         emailext(subject: 'Testing Reports for $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', body: 'please go to url: $BUILD_URL.'+readFile("bodyStuff.html"), attachmentsPattern: 'report.html', from: "${readProps['email.from']}", mimeType: 'text/html', to: "${readProps['email.to']}", attachLog: true)
       }
     }
-/*
-    stage('Kill container') {
-      steps {
-        script {
-          bat 'docker stop apiops-anypoint-bdd-sapi'
-          bat 'docker rm apiops-anypoint-bdd-sapi'
-        }
-
-        echo 'container removed'
-      }
-    }*/
 
   }
   tools {
